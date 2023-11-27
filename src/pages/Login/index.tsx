@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useMutation } from "react-query";
+import { Input, Button } from '@rneui/base';
 import { login } from "../../data";
 import { storeToken, toast } from "../../utils";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
+  const navigation = useNavigation();
   const [loginForm, setLoginFrom] = useState({
     username: "",
     password: "",
@@ -18,20 +21,26 @@ export default function Login() {
       onSuccess: async (token) => {
         toast("login success");
         await storeToken(token);
-        // router.replace('/(tabs)/');
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "home" } as never],
+        });
       },
       onError(err) {
-        // toast(`login failed ${err}`);
-        Alert.alert("Error", `err:${JSON.stringify(err)}`);
+        toast(`login failed ${err}`);
       },
     }
   );
+
+  const handleToRegister = () => {
+    navigation.navigate('register' as never);
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
       <Text>WIFI Sign System</Text>
-      {/* <Input
+      <Input
         placeholder="username"
         value={loginForm.username}
         onChangeText={(e) => setLoginFrom({ ...loginForm, username: e })}
@@ -43,9 +52,8 @@ export default function Login() {
       />
       <View style={styles.bottomAction}>
         <Button onPress={() => loginMutate()}>Login</Button>
-        <Button type="outline">To Register</Button>
-        <Button type="outline">https fet</Button>
-      </View> */}
+        <Button type="outline" onPress={handleToRegister}>To Register</Button>
+      </View>
     </View>
   );
 }
