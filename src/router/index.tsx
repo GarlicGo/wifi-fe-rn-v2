@@ -13,9 +13,11 @@ const Stack = createNativeStackNavigator();
 export const Router = () => {
   return (
     <Stack.Navigator initialRouteName="home">
-      <Stack.Screen name="home" component={Home} />
-      <Stack.Screen name="history" component={History} />
-      <Stack.Screen name="profile" component={Profile} />
+      <Stack.Screen name="home" component={Home} options={{
+        headerShown: false
+      }} />
+      {/* <Stack.Screen name="history" component={History} />
+      <Stack.Screen name="profile" component={Profile} /> */}
       <Stack.Screen name="login" component={Login} />
       <Stack.Screen name="register" component={Register} />
       <Stack.Screen name="*" component={NotFound} />
