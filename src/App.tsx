@@ -9,12 +9,11 @@ const queryClient = new QueryClient();
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Router />
-      {/* <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
         <AppInitial>
           <Router />
         </AppInitial>
-      </QueryClientProvider> */}
+      </QueryClientProvider>
     </NavigationContainer>
   );
 }
