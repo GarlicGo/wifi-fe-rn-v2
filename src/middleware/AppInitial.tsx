@@ -1,28 +1,30 @@
-import React, { useEffect } from 'react';
-import { View } from 'react-native';
-import { getToken } from '../utils';
+import React, { useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { getToken } from "../utils";
 
 interface Props {
   children?: React.ReactNode;
 }
 
-const detectInitLoginStatus = async () => {
-  const token = await getToken();
-  console.log('AppInitial Token:', token);
-
-  if (!token) {
-    // router.replace('/(aux)/login');
-  }
-};
-
 export const AppInitial: React.FC<Props> = ({ children }) => {
+  const { reset } = useNavigation();
+
+  const detectInitLoginStatus = async () => {
+    const token = await getToken();
+    console.log("AppInitial Token:", token);
+
+    if (!token) {
+      reset({
+        index: 0,
+        routes: [{ name: "login" } as never],
+      });
+      // router.replace('/(aux)/login');
+    }
+  };
+
   useEffect(() => {
     detectInitLoginStatus();
   }, []);
 
-  return (
-    <View>
-      {children}
-    </View>
-  );
+  return <>{children}</>;
 };
