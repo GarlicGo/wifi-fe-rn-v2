@@ -7,9 +7,9 @@ export enum UserSex {
 }
 
 export const UserSexMapper: Record<UserSex, string> = {
-  // [UserSex.UN_KNOW]: '未知',
-  [UserSex.MALE]: '男',
-  [UserSex.FEMALE]: '女',
+  // [UserSex.UN_KNOW]: 'UN_KNOW',
+  [UserSex.MALE]: 'MALE',
+  [UserSex.FEMALE]: 'FEMALE',
 };
 
 export enum UserRole {
@@ -18,6 +18,6 @@ export enum UserRole {
 }
 
 export const UserRoleMapper: Record<UserRole, string> = {
-  [UserRole.NORMAL]: '普通用户',
-  [UserRole.ADMIN]: '管理员',
+  [UserRole.NORMAL]: 'Normal User',
+  [UserRole.ADMIN]: 'Admin',
 };

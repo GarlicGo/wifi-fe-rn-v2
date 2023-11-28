@@ -73,7 +73,7 @@ export default function Register() {
         buttonStyle={{ padding: 10 }}
         selectedButtonStyle={{ backgroundColor: "#e2e2e2" }}
         buttons={["MALE", "FEMALE"]}
-        selectedIndex={0}
+        selectedIndex={selectedIndex}
          onPress={setSelectedIndex}
       />
       <View style={styles.bottomAction}>

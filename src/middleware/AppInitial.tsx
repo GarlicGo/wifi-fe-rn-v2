@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { getToken } from "../utils";
+import { PromptProvider } from "../components/Prompt";
 
 interface Props {
   children?: React.ReactNode;
@@ -26,5 +27,5 @@ export const AppInitial: React.FC<Props> = ({ children }) => {
     detectInitLoginStatus();
   }, []);
 
-  return <>{children}</>;
+  return <PromptProvider>{children}</PromptProvider>;
 };

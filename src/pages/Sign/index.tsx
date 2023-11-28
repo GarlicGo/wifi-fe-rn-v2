@@ -50,7 +50,7 @@ export default function Sign() {
         buttonStyle={signButtonStyles.signButton}
         titleStyle={signButtonStyles.signButtonText}
       />
-      <Button title="Current Wifi Info" onPress={handleSignClick} />
+      <Button title="Current Wifi Info" type="outline" onPress={handleSignClick} />
     </View>
   );
 }
