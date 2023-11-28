@@ -4,6 +4,7 @@ import { Button } from "@rneui/themed";
 import { getCanSign, sign } from "../../data";
 import { getWifiInfo, toast } from "../../utils";
 import { signButtonStyles, styles } from "./styles";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function Sign() {
   const { data: canSign, refetch: refreshCanSign } = useQuery(

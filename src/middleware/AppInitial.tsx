@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { getToken } from "../utils";
 import { PromptProvider } from "../components/Prompt";
+import { useInitUser } from "../model";
 
 interface Props {
   children?: React.ReactNode;
@@ -9,6 +10,7 @@ interface Props {
 
 export const AppInitial: React.FC<Props> = ({ children }) => {
   const { reset } = useNavigation();
+  useInitUser();
 
   const detectInitLoginStatus = async () => {
     const token = await getToken();
