@@ -11,3 +11,5 @@ export interface User {
   sex: UserSex;
   role: UserRole;
 }
+
+export type UpdateUser = Omit<User, 'userId' | 'password' | 'role'>;

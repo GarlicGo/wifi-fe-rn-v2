@@ -3,7 +3,7 @@ import { User, getMyInfo } from "../data";
 import { toast } from "../utils";
 import { useQuery } from "react-query";
 
-type StoreUser = Omit<User, "role" | "password">;
+export type StoreUser = Omit<User, "role" | "password">;
 
 type UserStore = {
   user?: StoreUser;

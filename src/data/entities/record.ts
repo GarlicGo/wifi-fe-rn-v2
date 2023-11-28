@@ -6,8 +6,11 @@ export interface SignRecord {
   groupName: string;
   placeName: string;
   userName: string;
+  signTimeDate: string;
   signTime: string;
   signState: RecordSignState;
   resignReason: string;
   leaveReason: string;
+  canResign: boolean;
+  canLeave: boolean;
 }

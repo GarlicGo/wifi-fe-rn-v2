@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "@rneui/themed";
 import { Text, View } from "react-native";
@@ -8,8 +7,12 @@ import { UserSexMapper } from "../../data";
 import { useUser } from "../../model";
 
 export default function Profile() {
-  const { reset } = useNavigation();
+  const { reset, navigate } = useNavigation();
   const user = useUser();
+
+  const handleEditProfile = () => {
+    navigate("edit-profile" as never);
+  };
 
   const handleLogout = () => {
     removeToken();
@@ -43,12 +46,12 @@ export default function Profile() {
         <View style={styles.infoItem}>
           <Text style={styles.infoTitle}>Sex</Text>
           <Text style={styles.infoText}>
-            {user?.sex && UserSexMapper[user?.sex]}
+            {user?.sex !== undefined && UserSexMapper[user?.sex]}
           </Text>
         </View>
       </View>
       <View style={styles.option}>
-        <Button title="Edit Profile" type="outline" onPress={handleLogout} />
+        <Button title="Edit Profile" type="outline" onPress={handleEditProfile} />
         <Button
           title="Log out"
           type="outline"

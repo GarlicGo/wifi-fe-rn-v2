@@ -92,8 +92,11 @@ export const RecordItem: React.FC<Props> = ({
           <Text style={styles.infoTitle}>Place Time</Text>: {data.placeName}
         </Text>
         <Text>
+          <Text style={styles.infoTitle}>Sign Date</Text>: {data.signTimeDate}
+        </Text>
+        <Text>
           <Text style={styles.infoTitle}>Sign Time</Text>:{" "}
-          {data?.signState === RecordSignState.SIGNED ? data.signTime : "-"}
+          {data?.signState === RecordSignState.SIGNED ? data.signTime : "--:--:--"}
         </Text>
         <Text>
           <Text style={styles.infoTitle}>Sign State</Text>:{" "}
@@ -108,10 +111,14 @@ export const RecordItem: React.FC<Props> = ({
         </Text>
       </View>
       <View style={styles.option}>
-        <Button type="outline" onPress={handleResign}>
+        <Button
+          type="outline"
+          onPress={handleResign}
+          disabled={!data?.canResign}
+        >
           Resign
         </Button>
-        <Button type="outline" onPress={handleLeave}>
+        <Button type="outline" onPress={handleLeave} disabled={!data?.canLeave}>
           Leave
         </Button>
       </View>

@@ -4,7 +4,6 @@ import { Button } from "@rneui/themed";
 import { getCanSign, sign } from "../../data";
 import { getWifiInfo, toast } from "../../utils";
 import { signButtonStyles, styles } from "./styles";
-import { useFocusEffect } from "@react-navigation/native";
 
 export default function Sign() {
   const { data: canSign, refetch: refreshCanSign } = useQuery(
@@ -20,18 +19,18 @@ export default function Sign() {
 
   const { mutate: handleSign } = useMutation(
     async () => {
-      const { bssid = '' } = await getWifiInfo();
+      const { bssid = "" } = await getWifiInfo();
       return sign(bssid);
     },
     {
       onSuccess() {
-        toast('Sign success');
+        toast("Sign success");
         refreshCanSign();
       },
       onError(err) {
-        toast(err?.toString() ?? 'Failed');
+        toast(err?.toString() ?? "Failed");
       },
-    },
+    }
   );
 
   const handleSignClick = async () => {
@@ -45,13 +44,24 @@ export default function Sign() {
   return (
     <View style={styles.container}>
       <Button
-        title="Sign"
+        title={canSign ? "Sign" : "(No sign task)"}
         disabled={!canSign}
         onPress={() => handleSign()}
         buttonStyle={signButtonStyles.signButton}
         titleStyle={signButtonStyles.signButtonText}
       />
-      <Button title="Current Wifi Info" type="outline" onPress={handleSignClick} />
+      <View style={styles.option}>
+        <Button
+          title="Refresh sign status"
+          type="outline"
+          onPress={() => refreshCanSign()}
+        />
+        <Button
+          title="Current Wifi Info"
+          type="outline"
+          onPress={handleSignClick}
+        />
+      </View>
     </View>
   );
 }
