@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { Button } from "@rneui/themed";
 import {
+  RecordSignState,
   RecordSignStateMapper,
   SignRecord,
   applyLeave,
@@ -19,7 +20,11 @@ interface Props {
   onApplyLeaveSuccess?: () => void;
 }
 
-export const RecordItem: React.FC<Props> = ({ data, onApplyLeaveSuccess, onApplyResignSuccess }) => {
+export const RecordItem: React.FC<Props> = ({
+  data,
+  onApplyLeaveSuccess,
+  onApplyResignSuccess,
+}) => {
   const { show: showPrompt } = usePrompt();
 
   const { mutate: resignMutate } = useMutation(resign, {
@@ -71,7 +76,7 @@ export const RecordItem: React.FC<Props> = ({ data, onApplyLeaveSuccess, onApply
   return (
     <View key={data.recordId} style={styles.container}>
       <View style={styles.info}>
-      <Text>
+        <Text>
           <Text style={styles.infoTitle}>Record Id</Text>: {data.recordId}
         </Text>
         <Text>
@@ -87,7 +92,8 @@ export const RecordItem: React.FC<Props> = ({ data, onApplyLeaveSuccess, onApply
           <Text style={styles.infoTitle}>Place Time</Text>: {data.placeName}
         </Text>
         <Text>
-          <Text style={styles.infoTitle}>Sign Time</Text>: {data.signTime}
+          <Text style={styles.infoTitle}>Sign Time</Text>:{" "}
+          {data?.signState === RecordSignState.SIGNED ? data.signTime : "-"}
         </Text>
         <Text>
           <Text style={styles.infoTitle}>Sign State</Text>:{" "}

@@ -17,3 +17,8 @@ export const register = async (params: Omit<User, 'userId' | 'role'>): Promise<v
   });
   return transformResponse(res);
 };
+
+export const getMyInfo = async (): Promise<Omit<User, 'role' | 'password'>> => {
+  const res = await http.get('/api/users/user');
+  return transformResponse(res);
+};

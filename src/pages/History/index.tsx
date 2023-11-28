@@ -54,7 +54,7 @@ export default function History() {
     >
       <View style={styles.headerInfo}>
         <Text style={styles.headerInfoText}>
-          All records number: {recordList?.length}
+          All records number: {data?.pages?.[0]?.total ?? 0}
         </Text>
       </View>
       {recordList?.map((record) => (

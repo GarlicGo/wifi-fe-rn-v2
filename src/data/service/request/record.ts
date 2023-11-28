@@ -41,7 +41,7 @@ export const resign = async ({
   recordId: RequestID;
   reason: string;
 }): Promise<void> => {
-  const res = await http.put(`/records/${recordId}/resigns`, {
+  const res = await http.put(`/api/records/${recordId}/resigns`, {
     reason,
   });
   return transformResponse(res);
@@ -56,7 +56,7 @@ export const applyLeave = async ({
 }): Promise<void> => {
   console.log('applyLeave', recordId, reason);
   
-  const res = await http.put(`/records/${recordId}/leaves`, {
+  const res = await http.put(`/api/records/${recordId}/leaves`, {
     reason,
   });
   return transformResponse(res);
