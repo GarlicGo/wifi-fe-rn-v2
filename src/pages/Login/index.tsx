@@ -5,8 +5,10 @@ import { Input, Button } from '@rneui/base';
 import { login } from "../../data";
 import { storeToken, toast } from "../../utils";
 import { useNavigation } from "@react-navigation/native";
+import { useUpdateUser } from "../../model";
 
 export default function Login() {
+  const updateUser = useUpdateUser();
   const navigation = useNavigation();
   const [loginForm, setLoginFrom] = useState({
     username: "",
@@ -21,6 +23,7 @@ export default function Login() {
       onSuccess: async (token) => {
         toast("login success");
         await storeToken(token);
+        updateUser();
         navigation.reset({
           index: 0,
           routes: [{ name: "home" } as never],
